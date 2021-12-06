@@ -9,18 +9,17 @@ mongoose
 .connect(process.env.MONGOURL)
 .then( ()=> console.log("Mongo DB connected"));
 
+//routes
+const animeRoute = require("./routes/animeRoute");
+const episodeRoute = require("./routes/episodeRoute");
+
+
 
 // Getting Request
 
 app.get("/",(req,res)=> res.send("Welcome To Anime World"));
-/*app.get('/', (req, res) => {
- 
-    // Sending the response
-    res.send('Hello World!')
-    
-    // Ending the response
-    res.end()
-})*/
+app.use("/anime",animeRoute);
+app.use("/episode",episodeRoute);
  
 // Establishing the port
 const PORT = process.env.PORT ||5000;
